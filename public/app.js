@@ -57,12 +57,14 @@ function clickingCreateCategory() {
     const createBtn = document.getElementById('createBtnMyList')
     createBtn.addEventListener('click', postingCategory)
 
+
 }
 
 
 function postingCategory() {
     const inputValue = document.getElementById('inputName')
     const nameValue = inputValue.value
+    hidingCreateCategory()
     makingNameObj(nameValue)
 }
 
@@ -70,7 +72,7 @@ function postingCategory() {
 function makingNameObj(nameValue) {
     let name = nameValue
     let nameData = { name }
-    console.log(nameData)
+
 
     postFetch(nameData)
 }
@@ -89,7 +91,6 @@ async function postFetch(nameData) {
     })
 
     let result = await data.json()
-    console.log(result)
 
     createList(result)
 }
@@ -97,12 +98,13 @@ async function postFetch(nameData) {
 
 
 function createList(result) {
-    console.log(result.name)
-    console.log(result[0].name)
+    const name = result[0].name
+    const idOfCat = result[0].category_id
     const newList = document.createElement('li')
-
-
-
+    newList.id = idOfCat
+    newList.className = "listings"
+    newList.innerText = name
+    myListArea.append(newList)
 }
 
 
@@ -110,8 +112,10 @@ function createList(result) {
 
 
 
+function hidingCreateCategory() {
+    document.getElementById('newCategory').style.display = "none"
 
-
+}
 
 
 
