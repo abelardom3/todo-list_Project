@@ -25,7 +25,6 @@ app.use(express.json())
 
 
 
-
 //GET ALL 
 
 app.get('/api/mylist', async (req, res) => {
@@ -38,23 +37,6 @@ app.get('/api/mylist', async (req, res) => {
         )
     }
 })
-
-
-
-app.get('/api/mylist/todo', async (req, res) => {
-
-    try {
-        const { rows } = await db.query('SELECT * FROM todo_list;')
-        res.send(rows)
-    } catch (error) {
-        res.send(error.message
-        )
-    }
-})
-
-
-
-
 
 
 
@@ -79,17 +61,6 @@ app.get('/api/mylist/:id', async (req, res) => {
 
 
 
-app.get('/api/mylist/:id/todo', async (req, res) => {
-    const { id } = req.params;
-
-    try {
-        const { rows } = await db.query('SELECT * FROM todo_list WHERE category_id = $1;', [id])
-        res.send(rows)
-    } catch (error) {
-        res.send(error.message
-        )
-    }
-})
 
 
 
@@ -97,26 +68,7 @@ app.get('/api/mylist/:id/todo', async (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//CREATE ONE 
+// CREATE ONE
 
 app.post('/api/mylist/post', async (req, res) => {
     const { name } = req.body;
@@ -128,30 +80,6 @@ app.post('/api/mylist/post', async (req, res) => {
         )
     }
 })
-
-
-
-
-app.post('/api/mylist/todo/post', async (req, res) => {
-    const { task } = req.body;
-    const { category_id } = req.body;
-
-    try {
-        const { rows } = await db.query('INSERT INTO todo_list(task,complete,category_id) VALUES($1,$2,$3)RETURNING *;', [task, false, category_id])
-        res.send(rows)
-    } catch (error) {
-        res.send(error.message
-        )
-    }
-})
-
-
-
-
-
-
-
-
 
 
 
@@ -175,31 +103,6 @@ app.patch('/api/mylist/:id/edit', async (req, res) => {
 
 
 
-app.patch('/api/mylist/todo/:id/edit', async (req, res) => {
-    const { task } = req.body;
-    const { complete } = req.body;
-    const { id } = req.params;
-    try {
-        if (task) {
-            const { rows } = await db.query('UPDATE todo_list SET task = $1 WHERE list_id = $2 RETURNING *;', [task, id])
-            res.send(rows)
-        } else if (complete) {
-            const { rows } = await db.query('UPDATE todo_list SET complete = $1 WHERE list_id = $2 RETURNING *;', [complete, id])
-            res.send(rows)
-        }
-
-
-
-    } catch (error) {
-        res.send(error.message
-        )
-    }
-})
-
-
-
-
-
 
 
 //DELETE ONE
@@ -215,25 +118,6 @@ app.delete('/api/mylist/delete/:id', async (req, res) => {
         )
     }
 })
-
-
-
-
-app.delete('/api/mylist/todo/delete/:id', async (req, res) => {
-    const { id } = req.params;
-    try {
-        const { rows } = await db.query('DELETE FROM todo_list WHERE list_id = $1 RETURNING *;', [id])
-        res.send(rows)
-    } catch (error) {
-        res.send(error.message
-        )
-    }
-})
-
-
-
-
-
 
 
 
