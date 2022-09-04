@@ -1,5 +1,6 @@
 
-
+const taskForm = document.getElementById('newTask-box')
+const taskInput = document.getElementById('inputTask')
 const createTaskBtn = document.getElementById('create-task-btn')
 
 const inputtask = document.getElementById('inputTask')
@@ -13,11 +14,42 @@ clickingCreateTask()
 
 function clickingCreateTask() {
 
+    taskForm.addEventListener('submit', (e) => {
+        e.preventDefault()
+        if (!taskInput.value) {
+            showError()
+        } else {
+            console.log('it worked')
+            hideError()
+            clearInputValue()
+            // sendingTaskToDatabase()
+        }
 
+
+
+    })
 
 
 
 }
+
+function showError() {
+
+}
+
+function hideError() {
+    $('#error-text').hide()
+
+}
+
+function clearInputValue() {
+    $('#inputTask').val('')
+}
+
+
+
+
+
 
 
 
