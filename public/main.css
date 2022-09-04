@@ -6,71 +6,83 @@
 
 
 
-
-
-
 #header {
     display: flex;
+    width: auto;
+    height: 5rem;
+    border: 5px solid black;
     justify-content: center;
-    border: 2px solid aqua;
-    height: 5rem;
+
 }
 
-
-#body {
+#task-box {
     display: flex;
+    justify-content: center;
+    height: 10rem;
 }
 
-
-#displayarea {
-    display: flex;
-    flex-wrap: wrap;
-
-    border: 5px solid black;
+#newTask-box {
     width: 20rem;
+    height: 10rem;
+    margin: 1rem;
+}
+
+
+
+#task-paragraph-box {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+
+#list-container {
+    width: 40rem;
     height: 20rem;
-
-}
-
-
-
-
-
-
-
-#navbar {
-    display: flex;
-    flex-direction: column;
-
+    margin-left: auto;
+    margin-right: auto;
     border: 5px solid black;
-    width: 10rem;
-    height: 40rem;
+
 }
 
-/* #navcontainer {
+
+#list-display {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    width: 35rem;
+    border: 2px solid black;
+    height: 10rem;
+    margin: 2rem;
 
-
-} */
-
-
-
-
-#mylist {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    list-style: none;
 }
 
 
 
 
-
-
-
-#input {
-    width: 5rem;
+#task-row {
+    display: flex;
     height: 5rem;
+    width: 15rem;
+    justify-content: space-evenly;
+}
+
+
+
+#edit-display {
+    display: vlock;
+}
+
+
+
+
+
+
+#footer {
+    display: flex;
+    width: auto;
+    height: 5rem;
+    border: 5px solid black;
+    justify-content: center;
 }
