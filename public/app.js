@@ -263,7 +263,7 @@ function clickingDeleteBtn(deleteBtn) {
         console.log(idToDelete)
         const listToRemove = document.getElementById(idToDelete)
         listToRemove.remove()
-
+        deleteFromDatabase(idToDelete)
 
     })
 
@@ -272,8 +272,18 @@ function clickingDeleteBtn(deleteBtn) {
 
 
 
+async function deleteFromDatabase(idToDelete) {
+
+    let result = await fetch(`/api/mylist/delete/${idToDelete}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-type': 'application/json'
+        }
+    })
 
 
+
+}
 
 
 

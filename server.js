@@ -1,7 +1,8 @@
 //set up dependencies
+require("dotenv").config();
 const express = require('express')
 const app = express()
-const port = 8000;
+const PORT = process.env.PORT || 8000;
 
 const db = require('./dataBase/conn.js')
 
@@ -127,7 +128,7 @@ app.delete('/api/mylist/delete/:id', async (req, res) => {
 
 
 
-app.listen(port, () => {
+app.listen(PORT, () => {
     console.log('Listening on port 8000')
 })
 
