@@ -72,7 +72,7 @@ app.get('/api/mylist/:id', async (req, res) => {
 
 app.post('/api/mylist/post', async (req, res) => {
     const { task } = req.body;
-    console.log(task)
+
 
     try {
         const { rows } = await db.query('INSERT INTO mylist(task) VALUES($1)RETURNING *;', [task])
@@ -89,11 +89,13 @@ app.post('/api/mylist/post', async (req, res) => {
 
 //EDIT ONE
 
-app.patch('/api/mylist/:id/edit', async (req, res) => {
+app.patch('/api/mylist/edit/:id', async (req, res) => {
     const { task } = req.body;
     const { id } = req.params;
+
     try {
         const { rows } = await db.query('UPDATE mylist SET task = $1 WHERE list_id = $2 RETURNING *;', [task, id])
+
         res.send(rows)
 
     } catch (error) {

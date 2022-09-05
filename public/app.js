@@ -50,7 +50,7 @@ function makingObj(anyValue) {
 }
 
 
-
+//posting functionality
 
 async function sendingTaskToDatabase(taskData) {
 
@@ -73,7 +73,8 @@ function creatingListTaskRow(data) {
     const dataId = data[0].list_id
 
     const taskRow = document.createElement('div')
-    taskRow.id = "task-row"
+    taskRow.className = 'task-row'
+    taskRow.id = dataId
     const divTask = document.createElement('div')
     divTask.innerText = dataValue
     divTask.id = dataId
@@ -81,9 +82,9 @@ function creatingListTaskRow(data) {
 
     taskRow.append(divTask)
 
+
     creatingEditBtn(taskRow, dataId)
     creatingDeleteBtn(taskRow, dataId)
-
     listDisplay.append(taskRow)
 
 }
@@ -92,7 +93,8 @@ function creatingListTaskRow(data) {
 function creatingEditBtn(taskRow, dataId) {
 
     const editBox = document.createElement('div')
-    editBox.id = "edit-box"
+    editBox.className = "edit-box"
+    editBox.id = dataId
     const editBtn = document.createElement('button')
     editBtn.innerText = "EDIT"
     editBtn.className = 'edit-btn'
@@ -101,8 +103,8 @@ function creatingEditBtn(taskRow, dataId) {
     editBox.append(editBtn)
     taskRow.append(editBox)
     console.log('1 testing')
-    clickingEditBtn(editBtn, dataId)
 
+    clickingEditBtn(editBtn, dataId)
 }
 
 
@@ -111,7 +113,8 @@ function creatingEditBtn(taskRow, dataId) {
 function creatingDeleteBtn(taskRow, dataId) {
 
     const deleteBox = document.createElement('div')
-    deleteBox.id = "delete-box"
+    deleteBox.className = "delete-box"
+    deleteBox.id = dataId
     const deleteBtn = document.createElement('button')
     deleteBtn.innerText = "DELETE"
     deleteBtn.className = "delete-btn"
@@ -136,7 +139,6 @@ function creatingDeleteBtn(taskRow, dataId) {
 
 function clickingEditBtn(editBtn, dataId) {
     editBtn.addEventListener('click', (e) => {
-
         createUpdateDisplay(dataId)
         console.log('2 testing')
     })
@@ -166,6 +168,7 @@ function createUpdateDisplay(dataId) {
     editDisplay.append(updateForm)
     console.log('3 testing')
     listContainer.append(editDisplay)
+
     clickingUpdateBtn(updateForm, inputUpdate, dataId)
 }
 
@@ -202,11 +205,33 @@ function clickingUpdateBtn(updateForm, inputUpdate, dataId) {
 
 
 function changingToNewUpdate(inputUpvalue, dataId) {
-    const listings = document.getElementById(`${dataId}`)
-    console.log('5 testing')
+    const parentRow = document.getElementById(`${dataId}`)
+
+    const listings = parentRow.children[0]
+
     listings.innerText = inputUpvalue
-    $('#edit-display').hide()
-    // $('#edit-display').empty()
+    patchingToDatabase(inputUpvalue, dataId)
+    $('#edit-display').remove()
+
+}
+
+
+
+async function patchingToDatabase(inputUpvalue, dataId) {
+    let task = inputUpvalue
+    let list_id = dataId
+    let updateData = { task }
+
+    let updateResult = await fetch(`/api/mylist/edit/${list_id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify(updateData)
+    })
+
+
+
 }
 
 
@@ -217,45 +242,6 @@ function changingToNewUpdate(inputUpvalue, dataId) {
 
 
 
-// create it beforehand then just show it 
-
-
-
-
-
-
-
-
-
-
-
-// function testingChangeTask(testingupdatevalue, testingUpdateID) {
-
-//     const testing = document.getElementById(`${testingUpdateID}`)
-//     testing.innerText = testingupdatevalue
-//     testHidingupdate()
-// }
-
-
-
-// function testHidingupdate() {
-//     $(editDisplay).hide()
-//     $(updateInput).val('')
-
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-///make edit into form 
 
 
 
@@ -273,8 +259,12 @@ function changingToNewUpdate(inputUpvalue, dataId) {
 function clickingDeleteBtn(deleteBtn) {
 
     deleteBtn.addEventListener('click', (e) => {
+        const idToDelete = e.target.id
+        console.log(idToDelete)
+        const listToRemove = document.getElementById(idToDelete)
+        listToRemove.remove()
 
-        console.log(e.target.id)
+
     })
 
 }

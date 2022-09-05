@@ -69,7 +69,7 @@
 
 
 
-#task-row {
+.task-row {
     display: flex;
     height: 2rem;
     width: 17rem;
