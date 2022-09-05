@@ -5,13 +5,15 @@ const taskInput = document.getElementById('inputTask')
 const createTaskBtn = document.getElementById('create-task-btn')
 const listDisplay = document.getElementById('list-display')
 const inputtask = document.getElementById('inputTask')
-
-
+const listContainer = document.getElementById('list-container')
+// const editDisplay = document.getElementById('edit-display')
+// const updateInput = document.getElementById('update-input')
+// const updateForm = document.getElementById('update-box-form')
 
 
 clickingCreateTask()
 
-clickingEditBtn()
+// clickingEditBtn()
 
 
 
@@ -28,6 +30,7 @@ function clickingCreateTask() {
         const taskValue = taskInput.value
         if (!taskValue) {
             showErrorInput()
+            console.log('need info for task')
         } else {
 
             hideErrorInput()
@@ -67,47 +70,56 @@ async function sendingTaskToDatabase(taskData) {
 
 function creatingListTaskRow(data) {
     const dataValue = data[0].task
+    const dataId = data[0].list_id
 
     const taskRow = document.createElement('div')
     taskRow.id = "task-row"
     const divTask = document.createElement('div')
     divTask.innerText = dataValue
+    divTask.id = dataId
     divTask.className = "listings"
 
     taskRow.append(divTask)
 
-    creatingEditBtn(taskRow)
-    creatingDeleteBtn(taskRow)
+    creatingEditBtn(taskRow, dataId)
+    creatingDeleteBtn(taskRow, dataId)
+
     listDisplay.append(taskRow)
 
 }
 
 
-function creatingEditBtn(taskRow) {
+function creatingEditBtn(taskRow, dataId) {
 
     const editBox = document.createElement('div')
     editBox.id = "edit-box"
     const editBtn = document.createElement('button')
     editBtn.innerText = "EDIT"
-    editBtn.id = "edit-btn"
+    editBtn.className = 'edit-btn'
+    editBtn.id = dataId
 
     editBox.append(editBtn)
     taskRow.append(editBox)
-
+    console.log('1 testing')
+    clickingEditBtn(editBtn, dataId)
 
 }
 
-function creatingDeleteBtn(taskRow) {
+
+
+
+function creatingDeleteBtn(taskRow, dataId) {
 
     const deleteBox = document.createElement('div')
     deleteBox.id = "delete-box"
     const deleteBtn = document.createElement('button')
     deleteBtn.innerText = "DELETE"
-    deleteBtn.id = "delete-btn"
+    deleteBtn.className = "delete-btn"
+    deleteBtn.id = dataId
 
     deleteBox.append(deleteBtn)
     taskRow.append(deleteBox)
-
+    clickingDeleteBtn(deleteBtn)
 }
 
 
@@ -119,11 +131,42 @@ function creatingDeleteBtn(taskRow) {
 
 
 
-function clickingEditBtn() {
 
 
 
+function clickingEditBtn(editBtn, dataId) {
+    editBtn.addEventListener('click', (e) => {
 
+        createUpdateDisplay(dataId)
+        console.log('2 testing')
+    })
+
+}
+
+
+function createUpdateDisplay(dataId) {
+    const editDisplay = document.createElement('div')
+    editDisplay.id = "edit-display"
+    const updateForm = document.createElement('form')
+    updateForm.id = 'update-box-form'
+
+    const inputUpdate = document.createElement('input')
+    inputUpdate.id = 'update-input'
+    inputUpdate.type = 'text'
+    inputUpdate.placeholder = 'Update task'
+
+    const updateBtn = document.createElement('input')
+    updateBtn.id = 'update-btn'
+    updateBtn.type = 'submit'
+    updateBtn.value = 'Update'
+
+
+    updateForm.append(inputUpdate)
+    updateForm.append(updateBtn)
+    editDisplay.append(updateForm)
+    console.log('3 testing')
+    listContainer.append(editDisplay)
+    clickingUpdateBtn(updateForm, inputUpdate, dataId)
 }
 
 
@@ -131,6 +174,110 @@ function clickingEditBtn() {
 
 
 
+
+
+
+
+
+
+
+function clickingUpdateBtn(updateForm, inputUpdate, dataId) {
+
+    updateForm.addEventListener('submit', (e) => {
+        e.preventDefault()
+        const inputUpvalue = inputUpdate.value
+        if (!inputUpvalue) {
+            console.log('need something bro')
+        } else {
+            console.log('4 testing')
+
+            changingToNewUpdate(inputUpvalue, dataId)
+        }
+
+
+    })
+
+}
+
+
+
+function changingToNewUpdate(inputUpvalue, dataId) {
+    const listings = document.getElementById(`${dataId}`)
+    console.log('5 testing')
+    listings.innerText = inputUpvalue
+    $('#edit-display').hide()
+    // $('#edit-display').empty()
+}
+
+
+
+
+
+
+
+
+
+// create it beforehand then just show it 
+
+
+
+
+
+
+
+
+
+
+
+// function testingChangeTask(testingupdatevalue, testingUpdateID) {
+
+//     const testing = document.getElementById(`${testingUpdateID}`)
+//     testing.innerText = testingupdatevalue
+//     testHidingupdate()
+// }
+
+
+
+// function testHidingupdate() {
+//     $(editDisplay).hide()
+//     $(updateInput).val('')
+
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+///make edit into form 
+
+
+
+
+
+
+
+
+
+
+
+
+//delete functionality
+
+function clickingDeleteBtn(deleteBtn) {
+
+    deleteBtn.addEventListener('click', (e) => {
+
+        console.log(e.target.id)
+    })
+
+}
 
 
 
@@ -177,7 +324,6 @@ function hideErrorInput() {
 function clearInputValue() {
     $('#inputTask').val('')
 }
-
 
 
 
