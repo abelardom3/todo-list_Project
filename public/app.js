@@ -1,4 +1,4 @@
-
+console.log('Hello world ')
 
 const taskForm = document.getElementById('newTask-box')
 const taskInput = document.getElementById('inputTask')
