@@ -54,7 +54,7 @@ function makingObj(anyValue) {
 
 async function sendingTaskToDatabase(taskData) {
 
-    let result = await fetch('/api/mylist/post', {
+    let result = await fetch('https://limitless-citadel-78795.herokuapp.com/api/mylist/post', {
         method: 'POST',
         headers: {
             'Content-type': 'application/json'
@@ -222,7 +222,7 @@ async function patchingToDatabase(inputUpvalue, dataId) {
     let list_id = dataId
     let updateData = { task }
 
-    let updateResult = await fetch(`/api/mylist/edit/${list_id}`, {
+    let updateResult = await fetch(`https://limitless-citadel-78795.herokuapp.com/api/mylist/edit/${list_id}`, {
         method: 'PATCH',
         headers: {
             'Content-type': 'application/json'
@@ -274,7 +274,7 @@ function clickingDeleteBtn(deleteBtn) {
 
 async function deleteFromDatabase(idToDelete) {
 
-    let result = await fetch(`/api/mylist/delete/${idToDelete}`, {
+    let result = await fetch(`https://limitless-citadel-78795.herokuapp.com/api/mylist/delete/${idToDelete}`, {
         method: 'DELETE',
         headers: {
             'Content-type': 'application/json'
