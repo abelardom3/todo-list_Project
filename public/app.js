@@ -55,7 +55,7 @@ function makingObj(anyValue) {
 async function sendingTaskToDatabase(taskData) {
 
     let result = await fetch('/api/mylist/post', {
-        method: 'post',
+        method: 'POST',
         headers: {
             'Content-type': 'application/json'
         },
