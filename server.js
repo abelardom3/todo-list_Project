@@ -28,7 +28,7 @@ app.use(express.json())
 
 //GET ALL 
 
-app.get('/api/mylist', async (req, res) => {
+app.get('https://limitless-citadel-78795.herokuapp.com/api/mylist', async (req, res) => {
 
     try {
         const { rows } = await db.query('SELECT * FROM mylist;')
@@ -48,7 +48,7 @@ app.get('/api/mylist', async (req, res) => {
 
 //GET ONE
 
-app.get('/api/mylist/:id', async (req, res) => {
+app.get('https://limitless-citadel-78795.herokuapp.com/api/mylist/:id', async (req, res) => {
     const { id } = req.params;
 
     try {
@@ -71,7 +71,7 @@ app.get('/api/mylist/:id', async (req, res) => {
 
 // CREATE ONE
 
-app.post('/api/mylist/post', async (req, res) => {
+app.post('https://limitless-citadel-78795.herokuapp.com/api/mylist/post', async (req, res) => {
     const { task } = req.body;
 
 
@@ -90,7 +90,7 @@ app.post('/api/mylist/post', async (req, res) => {
 
 //EDIT ONE
 
-app.patch('/api/mylist/edit/:id', async (req, res) => {
+app.patch('https://limitless-citadel-78795.herokuapp.com/api/mylist/edit/:id', async (req, res) => {
     const { task } = req.body;
     const { id } = req.params;
 
@@ -112,7 +112,7 @@ app.patch('/api/mylist/edit/:id', async (req, res) => {
 
 //DELETE ONE
 
-app.delete('/api/mylist/delete/:id', async (req, res) => {
+app.delete('https://limitless-citadel-78795.herokuapp.com/api/mylist/delete/:id', async (req, res) => {
     const { id } = req.params;
     try {
         const { rows } = await db.query('DELETE FROM mylist WHERE list_id = $1 RETURNING *;', [id])
