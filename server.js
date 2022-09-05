@@ -51,7 +51,7 @@ app.get('/api/mylist/:id', async (req, res) => {
     const { id } = req.params;
 
     try {
-        const { rows } = await db.query('SELECT * FROM mylist WHERE category_id = $1;', [id])
+        const { rows } = await db.query('SELECT * FROM mylist WHERE list_id = $1;', [id])
         res.send(rows)
     } catch (error) {
         res.send(error.message
@@ -71,9 +71,11 @@ app.get('/api/mylist/:id', async (req, res) => {
 // CREATE ONE
 
 app.post('/api/mylist/post', async (req, res) => {
-    const { name } = req.body;
+    const { task } = req.body;
+    console.log(task)
+
     try {
-        const { rows } = await db.query('INSERT INTO mylist(name) VALUES($1)RETURNING *;', [name])
+        const { rows } = await db.query('INSERT INTO mylist(task) VALUES($1)RETURNING *;', [task])
         res.send(rows)
     } catch (error) {
         res.send(error.message
@@ -88,10 +90,10 @@ app.post('/api/mylist/post', async (req, res) => {
 //EDIT ONE
 
 app.patch('/api/mylist/:id/edit', async (req, res) => {
-    const { name } = req.body;
+    const { task } = req.body;
     const { id } = req.params;
     try {
-        const { rows } = await db.query('UPDATE mylist SET name = $1 WHERE category_id = $2 RETURNING *;', [name, id])
+        const { rows } = await db.query('UPDATE mylist SET task = $1 WHERE list_id = $2 RETURNING *;', [task, id])
         res.send(rows)
 
     } catch (error) {
@@ -110,8 +112,8 @@ app.patch('/api/mylist/:id/edit', async (req, res) => {
 app.delete('/api/mylist/delete/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        const { rows } = await db.query('DELETE FROM mylist WHERE category_id = $1 RETURNING *;', [id])
-        await db.query('DELETE FROM todo_list WHERE category_id = $1;', [id])
+        const { rows } = await db.query('DELETE FROM mylist WHERE list_id = $1 RETURNING *;', [id])
+
         res.send(rows)
     } catch (error) {
         res.send(error.message

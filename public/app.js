@@ -1,8 +1,9 @@
 
+
 const taskForm = document.getElementById('newTask-box')
 const taskInput = document.getElementById('inputTask')
 const createTaskBtn = document.getElementById('create-task-btn')
-
+const listDisplay = document.getElementById('list-display')
 const inputtask = document.getElementById('inputTask')
 
 
@@ -10,34 +11,165 @@ const inputtask = document.getElementById('inputTask')
 
 clickingCreateTask()
 
+clickingEditBtn()
+
+
+
+
+
+
+
 
 
 function clickingCreateTask() {
 
     taskForm.addEventListener('submit', (e) => {
         e.preventDefault()
-        if (!taskInput.value) {
-            showError()
+        const taskValue = taskInput.value
+        if (!taskValue) {
+            showErrorInput()
         } else {
-            console.log('it worked')
-            hideError()
+
+            hideErrorInput()
             clearInputValue()
-            // sendingTaskToDatabase()
+            makingObj(taskValue)
         }
-
-
-
     })
+}
+
+
+// Turn any data into obj
+function makingObj(anyValue) {
+    let task = anyValue
+    let taskData = { task }
+
+    sendingTaskToDatabase(taskData)
+}
+
+
+
+
+async function sendingTaskToDatabase(taskData) {
+
+    let result = await fetch('/api/mylist/post', {
+        method: 'post',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify(taskData)
+    })
+    let data = await result.json()
+    console.log(data)
+    creatingListTaskRow(data)
+}
+
+
+
+function creatingListTaskRow(data) {
+    const dataValue = data[0].task
+
+    const taskRow = document.createElement('div')
+    taskRow.id = "task-row"
+    const divTask = document.createElement('div')
+    divTask.innerText = dataValue
+    divTask.className = "listings"
+
+    taskRow.append(divTask)
+
+    creatingEditBtn(taskRow)
+    creatingDeleteBtn(taskRow)
+    listDisplay.append(taskRow)
+
+}
+
+
+function creatingEditBtn(taskRow) {
+
+    const editBox = document.createElement('div')
+    editBox.id = "edit-box"
+    const editBtn = document.createElement('button')
+    editBtn.innerText = "EDIT"
+    editBtn.id = "edit-btn"
+
+    editBox.append(editBtn)
+    taskRow.append(editBox)
+
+
+}
+
+function creatingDeleteBtn(taskRow) {
+
+    const deleteBox = document.createElement('div')
+    deleteBox.id = "delete-box"
+    const deleteBtn = document.createElement('button')
+    deleteBtn.innerText = "DELETE"
+    deleteBtn.id = "delete-btn"
+
+    deleteBox.append(deleteBtn)
+    taskRow.append(deleteBox)
+
+}
+
+
+
+
+
+
+//edit  functionality
+
+
+
+function clickingEditBtn() {
+
 
 
 
 }
 
-function showError() {
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Functions that show and hide
+function showErrorInput() {
+    $('#error-text').show()
 }
 
-function hideError() {
+function hideErrorInput() {
     $('#error-text').hide()
 
 }
