@@ -55,7 +55,7 @@ function makingObj(anyValue) {
 async function sendingTaskToDatabase(taskData) {
 
     let result = await fetch('https://limitless-citadel-78795.herokuapp.com/api/mylist/post', {
-        method: 'POST',
+        method: 'post',
         headers: {
             'Content-type': 'application/json'
         },
