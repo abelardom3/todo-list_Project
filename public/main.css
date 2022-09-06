@@ -4,16 +4,37 @@
     box-sizing: border-box;
 }
 
+body {
+    min-height: 100vh;
+    background: #495057;
+    font-family: 'Quicksand', sans-serif;
+    color: white;
 
+}
 
 #header {
     display: flex;
     width: auto;
     height: 5rem;
-    border: 5px solid black;
-    justify-content: center;
+    background: #212529;
+    justify-content: flex-start;
+    margin-bottom: 20px;
 
 }
+
+
+
+h1 {
+    padding: 1rem;
+    font-weight: 400;
+    font-family: 'Quicksand', sans-serif;
+    color: white;
+
+}
+
+
+
+
 
 #task-box {
     display: flex;
@@ -29,10 +50,60 @@
 
 
 #newTask-box {
-    width: 20rem;
-    height: 2rem;
+    width: 28rem;
+    height: 4rem;
     margin: 1rem;
 }
+
+
+#inputTask {
+    border: none;
+    color: white;
+    border-radius: 0;
+    background:
+        linear-gradient(90deg, #ccc, #ccc) left bottom/100% 2px no-repeat;
+    border-bottom-color: white;
+    width: 200px;
+    outline: none;
+    font-size: 20px;
+    font-family: 'Quicksand', sans-serif;
+    padding: 1px;
+}
+
+#inputTask:focus::placeholder {
+    color: transparent;
+}
+
+#inputTask::placeholder {
+    color: white;
+    transition: color 0.3s ease;
+
+}
+
+#create-task-btn {
+    text-decoration: none;
+    margin: 1rem;
+    font-size: 17px;
+    background: #212529;
+    color: white;
+    border-radius: 10px;
+    width: 8rem;
+    font-family: 'Quicksand', sans-serif;
+}
+
+#create-task-btn:hover {
+    cursor: pointer;
+}
+
+
+
+#error-text {
+    color: white;
+}
+
+
+
+
 
 
 
@@ -55,6 +126,28 @@
 }
 
 
+.show-box {
+    width: 12rem;
+    height: 5rem;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+}
+
+
+#show-history {
+    width: 10rem;
+    height: 3rem;
+    margin: .8rem;
+    justify-content: center;
+    padding: .6rem;
+    background: #212529;
+    border: 2px solid black;
+    border-radius: 10px;
+
+}
+
 #list-display {
     display: flex;
     justify-content: space-evenly;
@@ -64,6 +157,10 @@
     height: 10rem;
     margin: 2rem;
 
+    overflow: scroll;
+
+
+
 }
 
 
@@ -72,7 +169,7 @@
 .task-row {
     display: flex;
     height: 2rem;
-    width: 17rem;
+    width: 20rem;
     justify-content: space-evenly;
     border: 2px solid black;
     margin-left: auto;
@@ -93,6 +190,8 @@
 
 
 
+/*Sticky Footer Styling*/
+
 
 
 #footer {
@@ -101,4 +200,6 @@
     height: 5rem;
     border: 5px solid black;
     justify-content: center;
+    position: sticky;
+    top: 100%;
 }
