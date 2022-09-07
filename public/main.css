@@ -13,15 +13,6 @@ body {
 }
 
 
-
-
-
-
-
-
-
-
-
 #header {
     display: flex;
     width: auto;
@@ -86,7 +77,7 @@ h1 {
 
 #inputTask::placeholder {
     color: white;
-    transition: color 0.3s ease;
+    transition: color 0.5s ease;
 
 }
 
@@ -96,9 +87,10 @@ h1 {
     font-size: 17px;
     background: #212529;
     color: white;
-    border-radius: 10px;
+    border-radius: 30px;
     width: 8rem;
     font-family: 'Quicksand', sans-serif;
+    padding: 5px 5px;
 }
 
 #create-task-btn:hover {
@@ -108,10 +100,15 @@ h1 {
 
 
 #error-text {
+
     color: white;
+
 }
 
-
+#error-text::after {
+    color: transparent;
+    transition: color 0.5s ease;
+}
 
 
 
@@ -128,7 +125,10 @@ h1 {
 
 #task-text {
     font-weight: 400;
-
+    /* width: 12.5rem;
+    height: 2rem;
+    background:
+        linear-gradient(90deg, #ccc, #ccc) left bottom/100% 2px no-repeat; */
 
 }
 
@@ -147,6 +147,120 @@ h1 {
 }
 
 
+#edit-display {
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+#update-input {
+    border: none;
+    color: white;
+    border-radius: 0;
+    background:
+        linear-gradient(90deg, #ccc, #ccc) left bottom/100% 2px no-repeat;
+    border-bottom-color: white;
+    width: 200px;
+    outline: none;
+    font-size: 20px;
+    font-family: 'Quicksand', sans-serif;
+    padding: 1px;
+
+}
+
+#update-input:focus::placeholder {
+    color: transparent;
+}
+
+#update-input::placeholder {
+    color: white;
+    transition: color 0.5s ease;
+
+}
+
+
+
+#update-btn {
+    text-decoration: none;
+    margin: 10px;
+    font-size: 13px;
+    background: #212529;
+    color: white;
+    border-radius: 30px;
+    width: 5rem;
+    font-family: 'Quicksand', sans-serif;
+    padding: 5px 5px;
+}
+
+#update-btn:hover {
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+.edit-btn {
+    text-decoration: none;
+    margin: 10px;
+    font-size: 13px;
+    background: #212529;
+    color: white;
+    border-radius: 30px;
+    width: 5rem;
+    font-family: 'Quicksand', sans-serif;
+    padding: 5px 5px;
+}
+
+.edit-btn:hover {
+    cursor: pointer;
+}
+
+.delete-btn {
+    text-decoration: none;
+    margin: 10px;
+    font-size: 13px;
+    background: #212529;
+    color: white;
+    border-radius: 30px;
+    width: 5rem;
+    font-family: 'Quicksand', sans-serif;
+    padding: 5px 5px;
+}
+
+.delete-btn:hover {
+    cursor: pointer;
+}
+
+
+.complete-btn {
+    text-decoration: none;
+    margin: 10px;
+    font-size: 13px;
+    background: #212529;
+    color: white;
+    border-radius: 30px;
+    width: 5rem;
+    font-family: 'Quicksand', sans-serif;
+    padding: 5px 5px;
+}
+
+.complete-btn:hover {
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
 .show-box {
     width: 12rem;
     height: 5rem;
@@ -154,19 +268,26 @@ h1 {
     margin-left: auto;
     margin-right: auto;
     color: white;
+    display: flex;
+    justify-content: center;
 }
 
 
 #show-history {
-    width: 10rem;
-    height: 3rem;
-    margin: .8rem;
-    justify-content: center;
-    padding: .6rem;
+    text-decoration: none;
+    margin: 10px;
+    font-size: 17px;
     background: #212529;
-    border: 2px solid black;
-    border-radius: 10px;
+    color: white;
+    border-radius: 30px;
+    width: 10rem;
+    font-family: 'Quicksand', sans-serif;
+    justify-content: center;
+    padding: 10px 10px;
+}
 
+#show-history:hover {
+    cursor: pointer;
 }
 
 #list-display {
@@ -239,7 +360,7 @@ h1 {
     display: flex;
     width: auto;
     height: 5rem;
-    border: 5px solid black;
+
     background: #212529;
     justify-content: center;
     position: sticky;

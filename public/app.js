@@ -87,7 +87,7 @@ function creatingEditBtn(taskRow, dataId) {
     editBox.className = "edit-box"
     editBox.id = dataId
     const editBtn = document.createElement('button')
-    editBtn.innerText = "EDIT"
+    editBtn.innerText = "Edit"
     editBtn.className = 'edit-btn'
     editBtn.id = dataId
 
@@ -104,7 +104,7 @@ function creatingDeleteBtn(taskRow, dataId) {
     deleteBox.className = "delete-box"
     deleteBox.id = dataId
     const deleteBtn = document.createElement('button')
-    deleteBtn.innerText = "DELETE"
+    deleteBtn.innerText = "Delete"
     deleteBtn.className = "delete-btn"
     deleteBtn.id = dataId
 
@@ -290,7 +290,7 @@ function clickingShowComplete() {
     showHistory.addEventListener('click', () => {
         if (showHistory.innerText === 'Close') {
             hideAllHistory()
-        } else if (showHistory.innerText === "show history") {
+        } else if (showHistory.innerText === "Show History") {
             getAllfetch()
         }
 
@@ -341,7 +341,7 @@ function hideAllHistory() {
 
     const showAllId = document.getElementById('showAll-display')
     $(showAllId).remove()
-    showHistory.innerText = "show history"
+    showHistory.innerText = "Show History"
     showTaskRow()
     console.log('hit close route')
 }
