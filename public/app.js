@@ -7,14 +7,14 @@ const listDisplay = document.getElementById('list-display')
 const inputtask = document.getElementById('inputTask')
 const listContainer = document.getElementById('list-container')
 const showHistory = document.getElementById('show-history')
-
+const errorTxtUpdate = document.getElementById('error-text-update')
 
 
 clickingCreateTask()
 
 // clickingEditBtn()
 clickingShowComplete()
-
+localStorage.setItem('data', 'hello storage')
 
 function clickingCreateTask() {
 
@@ -131,6 +131,8 @@ function clickingEditBtn(editBtn, dataId) {
 
 
 function createUpdateDisplay(dataId) {
+
+
     const editDisplay = document.createElement('div')
     editDisplay.id = "edit-display"
     const updateForm = document.createElement('form')
@@ -147,25 +149,40 @@ function createUpdateDisplay(dataId) {
     updateBtn.value = 'Update'
 
 
-
+    const test = document.createElement('div')
+    test.id = 'testX'
+    test.innerText = 'X'
 
 
     updateForm.append(inputUpdate)
     updateForm.append(updateBtn)
+    updateForm.append(test)
     editDisplay.append(updateForm)
+
+
     console.log('3 testing')
     $(listDisplay).prepend(editDisplay)
 
     clickingUpdateBtn(updateForm, inputUpdate, dataId)
+    clickingExitUpdate(editDisplay, test)
 }
 
+function clickingExitUpdate(editDisplay, test) {
+    test.addEventListener('click', () => {
+        editDisplay.remove()
+        showTaskRow()
+    })
 
+
+
+}
 function clickingUpdateBtn(updateForm, inputUpdate, dataId) {
 
     updateForm.addEventListener('submit', (e) => {
         e.preventDefault()
         const inputUpvalue = inputUpdate.value
         if (!inputUpvalue) {
+            addErrorTxtUpdate()
             showErrorUpdate()
         } else {
             changingToNewUpdate(inputUpvalue, dataId)
@@ -367,7 +384,11 @@ function hideAllHistory() {
 
 
 
+//adding error Text update
+function addErrorTxtUpdate() {
+    $('#edit-display').append(errorTxtUpdate)
 
+}
 
 
 
@@ -409,6 +430,7 @@ function hideTaskRow() {
 
 
 function showErrorUpdate() {
+
     $('#error-text-update').show()
 }
 
