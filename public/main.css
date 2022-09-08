@@ -150,7 +150,7 @@ h1 {
     height: 25rem;
     margin-left: auto;
     margin-right: auto;
-    border: 3px solid #212529;
+    /* border: 3px solid #212529; */
     border-radius: 13px;
     background: #495057;
 
@@ -496,13 +496,17 @@ h1 {
     flex-direction: row;
 }
 
-h3 {
+#about-id {
     font-weight: 400;
-    width: 8rem;
+    width: 3.5rem;
     margin: 2rem;
 }
 
 
-p2 {
+#about-info {
     margin: auto;
+}
+
+#about-id:hover {
+    cursor: pointer;
 }

@@ -12,6 +12,7 @@ const errorTxtUpdate = document.getElementById('error-text-update')
 
 clickingCreateTask()
 
+clickingAbout()
 // clickingEditBtn()
 clickingShowComplete()
 localStorage.setItem('data', 'hello storage')
@@ -368,7 +369,20 @@ function hideAllHistory() {
 
 
 
+///showing about
 
+
+function clickingAbout() {
+    const about = document.getElementById('about-id')
+    const info = document.getElementById('about-info')
+    about.addEventListener('mouseover', () => {
+        info.style.display = 'block'
+        about.addEventListener('mouseleave', () => {
+            info.style.display = 'none'
+        })
+        console.log('hover over about')
+    })
+}
 
 
 
